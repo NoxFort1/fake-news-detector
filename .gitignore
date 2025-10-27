@@ -1,2 +1,3 @@
-data/Fake.csv
-data/True.csv
+data/raw/Fake.csv
+data/raw/True.csv
+data/processed/merged_dataset.csv
