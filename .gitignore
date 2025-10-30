@@ -1,3 +1,6 @@
 data/raw/Fake.csv
 data/raw/True.csv
 data/processed/merged_dataset.csv
+*.npy
+*.pkl
+.ipynb_checkpoints/
