@@ -102,7 +102,24 @@ The application will open in your browser at `http://localhost:8501` </br>
 4. Expand "Technical Explanation" for detailed analysis
 
 ## 📁 Project Structure
-
+```
+fake-news-detector/
+├── app.py                        # Main Streamlit application
+├── text_features.py              # Text feature extraction module
+├── requirements.txt              # Python dependencies
+├── models/
+│   ├── cnn_lstm_mlp_model.keras  # Trained model
+│   ├── tokenizer.pkl             # Text tokenizer
+│   └── config.pkl                # Model configuration
+├── src/
+│   ├── config.py                 # App configuration & constants
+│   ├── gemini_client.py          # Gemini API integration
+│   ├── predictor.py              # Model loading & prediction
+│   ├── precheck.py               # Input validation
+│   └── ui_components.py          # Streamlit UI components
+└── data/
+    └── raw/                      # Training datasets
+```
 ## 🛠️ Technologies Used
 
 - Deep Learning: TensorFlow/Keras
@@ -125,4 +142,5 @@ This project is for educational purposes.
 
 ## 👤 Authors
 Bartosz Sychowicz, Kamil Sitko
+
 
