@@ -8,6 +8,7 @@ pandas>=2.0.0
 # NLP libraries
 transformers>=4.35.0
 spacy>=3.7.0
+google-generativeai>=0.7.2
 
 # Visualization
 matplotlib>=3.8.0
@@ -20,6 +21,7 @@ streamlit>=1.29.0
 # Utilities
 tqdm>=4.66.0
 pickle5>=0.0.11;python_version<"3.8"
+python-dotenv>=1.0.0
 
 # Note: Run this after installing to download spaCy model:
 # python -m spacy download en_core_web_sm

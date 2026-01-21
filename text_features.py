@@ -22,7 +22,6 @@ class TextFeatureExtractor:
     - Social media specific features (hashtags, URLs, mentions)
     """
     
-    # Feature order expected by the model
     FEATURE_ORDER = [
         'statuses_count', 'following', 'cred', 'normalize_influence',
         'hashtags', 'urls', 'unique_count', 'NORP_percentage',
@@ -31,9 +30,8 @@ class TextFeatureExtractor:
         'pronouns', 'tos', 'exclamation', 'capitals', 'short_word_freq'
     ]
     
-    # Default values for user profile features (not extractable from text alone)
     DEFAULT_USER_FEATURES = {
-        'statuses_count': 1000.0,  # Average Twitter user
+        'statuses_count': 1000.0,
         'following': 1.0,
         'cred': 0.5,
         'normalize_influence': 0.5
@@ -69,33 +67,27 @@ class TextFeatureExtractor:
         Returns:
             Dictionary containing all extracted features.
         """
-        # Process text with spaCy
         doc = self.nlp(text)
         words = [token.text for token in doc if not token.is_space]
         
         features = {}
         
-        # User profile features (use provided or defaults)
         user_feats = user_features or {}
         for key, default_val in self.DEFAULT_USER_FEATURES.items():
             features[key] = user_feats.get(key, default_val)
         
-        # Social media features
         features['hashtags'] = self._count_hashtags(text)
         features['urls'] = self._count_urls(text)
         
-        # Text statistics
         features['unique_count'] = len(set(word.lower() for word in words))
         features['word_count'] = len(words)
         
-        # NER entity percentages
         ner_percentages = self._extract_ner_percentages(doc)
         features['NORP_percentage'] = ner_percentages.get('NORP', 0.0)
         features['PERSON_percentage'] = ner_percentages.get('PERSON', 0.0)
         features['MONEY_percentage'] = ner_percentages.get('MONEY', 0.0)
         features['CARDINAL_percentage'] = ner_percentages.get('CARDINAL', 0.0)
         
-        # POS tag counts
         pos_counts = self._extract_pos_counts(doc)
         features['present_verbs'] = pos_counts.get('present_verbs', 0)
         features['past_verbs'] = pos_counts.get('past_verbs', 0)
@@ -103,7 +95,6 @@ class TextFeatureExtractor:
         features['pronouns'] = pos_counts.get('pronouns', 0)
         features['tos'] = pos_counts.get('tos', 0)
         
-        # Character-level features
         features['exclamation'] = text.count('!')
         features['capitals'] = self._count_capitals(text)
         features['short_word_freq'] = self._count_short_words(words)
@@ -153,7 +144,6 @@ class TextFeatureExtractor:
             entity_counts[ent.label_] += len(ent)
             total_entity_tokens += len(ent)
         
-        # Calculate percentages relative to total tokens
         total_tokens = len(doc)
         percentages = {}
         for entity_type, count in entity_counts.items():
@@ -231,7 +221,6 @@ def preprocess_text(text: str) -> str:
     return text
 
 
-# Convenience function for quick feature extraction
 def extract_text_features(
     text: str, 
     user_features: Optional[Dict[str, float]] = None,
@@ -261,7 +250,6 @@ def extract_text_features(
 
 
 if __name__ == '__main__':
-    # Example usage
     sample_text = """
     BREAKING: Scientists discover new evidence! This is absolutely incredible news.
     Check out https://example.com for more info. #science #discovery @news_outlet
