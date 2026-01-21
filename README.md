@@ -17,6 +17,12 @@ This project implements a hybrid approach to fake news detection:
 - **LLM Agent**: Google Gemini 2.0 Flash for contextual truthfulness assessment
 - **Feature Extraction**: Linguistic and statistical features using spaCy NLP
 
+## 📁 Data
+
+The dataset is not included in this repository. <br>
+Download it from [Canadian Institute for Cybersecurity](https://www.unb.ca/cic/datasets/truthseeker-2023.html) <br>
+and place the CSV files in `data/raw/` folder.
+
 ## 🎯 Model Performance
 
 <div align="center">
@@ -119,3 +125,4 @@ This project is for educational purposes.
 
 ## 👤 Authors
 Bartosz Sychowicz, Kamil Sitko
+
